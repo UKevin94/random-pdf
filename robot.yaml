@@ -1,0 +1,25 @@
+---
+apiVersion: opentestfactory.org/v1alpha1
+kind: Workflow
+metadata:
+    name: Robot
+jobs:
+    thisIsASuccess:
+        runs-on: robotframework
+        steps:
+        -  uses: actions/checkout@v2
+           with:
+              repository: https://github.com/SquashTF-workshop/robotDemoXML
+        -  uses: robotframework/robot@v1
+           with:
+               datasource: robotDemoXML/demo-xml.robot
+    thisIsAFailure:
+        runs-on: robotframework
+        needs: thisIsASuccess
+        steps:
+        -  uses: actions/checkout@v2
+           with:
+              repository: https://github.com/SquashTF-workshop/robotTFParamCheck
+        -  uses: robotframework/robot@v1
+           with:
+               datasource: robotTFParamCheck/robot_community.robot

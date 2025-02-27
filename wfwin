@@ -1,0 +1,16 @@
+---
+
+apiVersion: opentestfactory.org/v1alpha1
+kind: Workflow
+metadata:
+    name: DevOpsWindows
+jobs:
+    explicitJob:
+        runs-on: windows
+        generator: tm.squashtest.org/tm.generator@v1
+        with:
+            testPlanUuid: ed474f84-ce57-47e9-aff6-13a6624ff5e4
+            testPlanType: TestSuite
+            squashTMUrl: http://apachetm/squash
+            squashTMAutomatedServerLogin: tfserver
+            squashTMAutomatedServerPassword: tfserver
