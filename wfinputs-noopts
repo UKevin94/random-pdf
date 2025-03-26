@@ -1,0 +1,29 @@
+---
+apiVersion: opentestfactory.org/v1alpha1
+kind: Workflow
+metadata:
+    name: Input test
+inputs:
+    boolinput:
+        description: a boolean
+        type: boolean
+    numberinput:
+        description: a number
+        type: number
+    choiceinput:
+        description: a choice
+        type: choice
+    stringinput:
+        description: a string used to define the runs-on tag
+        type: string
+jobs:
+    thisIsASuccess:
+        runs-on: linux
+        steps:
+        - run: echo ${{ inputs.stringinput }}
+        - run: echo ${{ inputs.boolinput }}
+          if: ${{ inputs.boolinput }}
+        - run: echo ${{ inputs.numberinput }}
+        - run: echo ${{ inputs.choiceinput }}
+        - run: echo this is a roro
+          if: ${{ inputs.choiceinput == 'roro' }}
