@@ -1,0 +1,18 @@
+---
+apiVersion: opentestfactory.org/v1alpha1
+kind: Workflow
+metadata:
+    name: Input test error
+jobs:
+    thisIsASuccess:
+        concurrency:
+            group: reusablewf
+        runs-on: linux
+        steps:
+        - run: echo fffffff
+    thisIsAnotherSuccess:
+        concurrency:
+            group: reusablewf
+        runs-on: linux
+        steps:
+        - run: echo zzzzz
