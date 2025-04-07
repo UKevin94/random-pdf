@@ -10,24 +10,26 @@ inputs:
     numberinput:
         description: a number
         type: number
-    choiceinput:
+    choice_input:
         description: a choice
         type: choice
         options:
         - popo
         - zozo
         - roro
-    stringinput:
+    string-input:
         description: a string used to define the runs-on tag
         type: string
 jobs:
     thisIsASuccess:
+        concurrency:
+            group: resusablewf
         runs-on: linux
         steps:
-        - run: echo ${{ inputs.stringinput }}
+        - run: echo ${{ inputs.string-input }}
         - run: echo ${{ inputs.boolinput }}
           if: ${{ inputs.boolinput }}
         - run: echo ${{ inputs.numberinput }}
-        - run: echo ${{ inputs.choiceinput }}
+        - run: echo ${{ inputs.choice_input }}
         - run: echo this is a roro
           if: ${{ inputs.choiceinput == 'roro' }}
